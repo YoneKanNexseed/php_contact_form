@@ -1,49 +1,24 @@
 <?php
-/*
-  DBのデータを画面に表示する場合は
-  1. DBからデータを取得する
-  2. 取得したデータを変数に代入
-  3. 2の内容を画面に表示する
-*/
+    require_once('function.php');
+    require_once('dbconnect.php');
 
-// １．データベースに接続する
-$dsn = 'mysql:dbname=phpkiso;host=localhost';
-$user = 'root';
-$password = '';
-$dbh = new PDO($dsn, $user, $password);
-$dbh->query('SET NAMES utf8');
-
-// ２．SQL文を実行する
-$sql = 'SELECT * FROM survey';
-$stmt = $dbh->prepare($sql);
-$stmt->execute();
-//DBから取得した内容を変数に代入 結果は連想配列になってる
-$results = $stmt->fetchAll(); 
-
-
-// echo '<pre>';
-// var_dump($results); //変数の中身を確認するための書き方
-// echo '<pre>';
-
-// ３．データベースを切断する
-$dbh = null;
-
+    //SQLを実行
+    $stmt = $dbh->prepare('SELECT * FROM survey');
+    $stmt->execute();
+    $results = $stmt->fetchAll(); 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>一覧</title>
 </head>
 <body>
 <!-- //画面に表示する -->
     <?php foreach ($results as $result): ?>
-        <p style="color: blue;"><?php echo $result['code'] . '<br>'; ?></p>
-        <p><?php echo $result['nickname'] . '<br>'; ?></p>
-        <p><?php echo $result['email'] . '<br>'; ?></p>
-        <p><?php echo $result['content'] . '<br>'; ?></p>
+        <p><?php echo $result['nickname']; ?></p>
+        <p><?php echo $result['email']; ?></p>
+        <p><?php echo $result['content']; ?></p>
     <?php endforeach; ?>
 </body>
 </html>

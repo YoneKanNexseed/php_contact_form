@@ -1,61 +1,22 @@
 <?php
+    require_once('function.php');
+    require_once('dbconnect.php');
 
-/*
-1. 大まかなにどんな流れでやるか言語化する
-    - 検索ワードを送る
-    - 検索ワードを受け取る
-    - DBで検索する
-        - DB接続
-        - SQL
-            - 検索ワードで絞る
-        - DB切断
-    - 画面に表示する
+    $nickname = '';
+    if (isset($_GET['nickname'])) {
+        $nickname = $_GET['nickname'];
+    }
 
-    - セキュリティ対策
-    - プリペアードステートメント
-        - SQLインジェクションを防ぐ
-            - 入力欄からSQLを実行する
-
-    3; DELETE FROM survey WHERE code = 2
-*/
-
-//検索ワードを送る
-
-//検索ワードを受け取る
-// var_dump($_GET['code']);
-
-//DBからデータを取得する
-// １．データベースに接続する
-$dsn = 'mysql:dbname=phpkiso;host=localhost';
-$user = 'root';
-$password = '';
-$dbh = new PDO($dsn, $user, $password);
-$dbh->query('SET NAMES utf8');
-
-// ２．SQL文を実行する
-$sql = 'SELECT * FROM survey WHERE nickname = ?'; //ニックネームが一致する場合
-// $data = [$_GET['nickname']]; //配列を変数に代入
-$data[] = $_GET['nickname']; //配列に変数を追加
-$stmt = $dbh->prepare($sql);
-$stmt->execute($data);
-//DBから取得した内容を変数に代入 結果は連想配列になってる
-$results = $stmt->fetchAll();
-
-// echo '<pre>';
-// var_dump($results); //変数の中身を確認するための書き方
-// echo '<pre>';
-
-// ３．データベースを切断する
-$dbh = null;
-
+    //SQLを実行
+    $stmt = $dbh->prepare('SELECT * FROM survey WHERE nickname = ?');
+    $stmt->execute(["%$nickname%"]);
+    $results = $stmt->fetchAll(); 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <title>送信完了</title>
+    <meta charset="utf-8">
 </head>
 <body>
     <form action="" method="get">
