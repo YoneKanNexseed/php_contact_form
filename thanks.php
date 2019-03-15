@@ -1,4 +1,9 @@
 <?php
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+      header('Location: index.html');
+    }
+
     require_once('function.php');
     require_once('dbconnect.php');
 

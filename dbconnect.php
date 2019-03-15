@@ -2,7 +2,7 @@
 
 //DBに接続
 $host = "localhost";
-$dbname = "phpkiso";
+$dbname = "contact_form";
 $charset = "utf8mb4";
 $user = 'root';
 $password='';
