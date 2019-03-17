@@ -26,10 +26,9 @@
     </form>
     <!-- //画面に表示する -->
     <?php foreach ($results as $result): ?>
-        <p style="color: blue;"><?php echo $result['code'] . '<br>'; ?></p>
-        <p><?php echo $result['nickname'] . '<br>'; ?></p>
-        <p><?php echo $result['email'] . '<br>'; ?></p>
-        <p><?php echo $result['content'] . '<br>'; ?></p>
+        <p><?php echo h($result['nickname']); ?></p>
+        <p><?php echo h($result['email']); ?></p>
+        <p><?php echo h($result['content']); ?></p>
     <?php endforeach; ?>
 </body>
 </html>

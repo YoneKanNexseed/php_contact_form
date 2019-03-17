@@ -10,20 +10,18 @@
     $email = $_POST['email'];
     $content = $_POST['content'];
 
-    //入力がある場合とない場合で処理を分ける
     if ($nickname == '') {
         $nickname_result = 'ニックネームが入力されていません。';
     } else {
         $nickname_result = 'ようこそ、' . $nickname .'様';
     }
-      // メールアドレス
+
     if ($email == '') {
         $email_result = 'メールアドレスが入力されていません。';
     } else {
         $email_result = 'メールアドレス：' . $email;
     }
 
-    // お問い合わせ内容
     if ($content == '') {
         $content_result =  'お問い合わせ内容が入力されていません。';
     } else {

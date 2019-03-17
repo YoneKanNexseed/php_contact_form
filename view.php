@@ -16,9 +16,9 @@
 <body>
 <!-- //画面に表示する -->
     <?php foreach ($results as $result): ?>
-        <p><?php echo $result['nickname']; ?></p>
-        <p><?php echo $result['email']; ?></p>
-        <p><?php echo $result['content']; ?></p>
+        <p><?php echo h($result['nickname']); ?></p>
+        <p><?php echo h($result['email']); ?></p>
+        <p><?php echo h($result['content']); ?></p>
     <?php endforeach; ?>
 </body>
 </html>
