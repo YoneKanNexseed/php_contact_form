@@ -8,7 +8,7 @@
     }
 
     //SQLを実行
-    $stmt = $dbh->prepare('SELECT * FROM survey WHERE nickname = ?');
+    $stmt = $dbh->prepare('SELECT * FROM survey WHERE nickname like ?');
     $stmt->execute(["%$nickname%"]);
     $results = $stmt->fetchAll(); 
 ?>
