@@ -23,9 +23,9 @@
 # テーブルのダンプ survey
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `survey`;
+DROP TABLE IF EXISTS `surveys`;
 
-CREATE TABLE `survey` (
+CREATE TABLE `surveys` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nickname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
